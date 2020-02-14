@@ -71,6 +71,11 @@ func _physics_process(delta):
     velocity.y = movement_vertical()
     velocity = move_and_slide(velocity)
 
+    var GROUND = 0
+    if transform.y > GROUND:
+        land()
+
+
 
 func _on_JumpTimer_timeout():
     hover_start()
