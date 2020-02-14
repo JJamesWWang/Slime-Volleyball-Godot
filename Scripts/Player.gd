@@ -1,9 +1,16 @@
 extends KinematicBody2D
 
-export (float) var hspeed = 200;
-export (float) var vspeed = 100;
-export (float) var jump_time = 1;
-export (float) var hover_time = 0.15;
+class_name Player
+
+
+export(float) var hspeed = 300
+export(float) var vspeed = 250
+export(float) var jump_time = 1
+export(float) var hover_time = 0.15
+
+export(float) var default_x = 1366 / 2
+export(float) var default_y = 768 - 32 * 4
+var player_name = "Debug"
 
 # only one of the following three can be true at once
 var jumping = false
@@ -13,18 +20,23 @@ onready var jump_timer = $JumpTimer
 onready var hover_timer = $HoverTimer
 
 
+func _init(_player_name="Debug").():
+	player_name = _player_name
+
+
 func movement_horizontal():
-	if Input.is_action_pressed('Debug Right'):
+	if Input.is_action_pressed('%s Right' % player_name):
 		return 1 * hspeed
-	if Input.is_action_pressed('Debug Left'):
+	if Input.is_action_pressed('%s Left' % player_name):
 		return -1 * hspeed
 	return 0
 
 
 func movement_vertical():
-	if Input.is_action_pressed("Debug Up") and not (jumping or hovering or falling):
+	if Input.is_action_pressed("%s Up" % player_name) and \
+			not (jumping or hovering or falling):
 		jump_start()
-	if Input.is_action_pressed("Debug Down") and jumping:
+	if Input.is_action_pressed("%s Down" % player_name) and jumping:
 		hover_start()
 	
 	if jumping:
