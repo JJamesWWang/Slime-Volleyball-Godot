@@ -14,17 +14,17 @@ onready var hover_timer = $HoverTimer
 
 
 func movement_horizontal():
-	if Input.is_action_pressed('right'):
+	if Input.is_action_pressed('Debug Right'):
 		return 1 * hspeed
-	if Input.is_action_pressed('left'):
+	if Input.is_action_pressed('Debug Left'):
 		return -1 * hspeed
 	return 0
 
 
 func movement_vertical():
-	if Input.is_action_pressed("up") and not (jumping or hovering or falling):
+	if Input.is_action_pressed("Debug Up") and not (jumping or hovering or falling):
 		jump_start()
-	if Input.is_action_pressed("down") and jumping:
+	if Input.is_action_pressed("Debug Down") and jumping:
 		hover_start()
 	
 	if jumping:
