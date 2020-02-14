@@ -2,10 +2,11 @@ extends KinematicBody2D
 
 var gravity = 100
 var velocity = Vector2()
-export var drop_speed = 500.0;
+export var min_speed = 500.0;
+
 
 func _ready():
-	velocity.y = drop_speed
+	velocity.y = min_speed
 
 
 func _physics_process(delta):
@@ -15,3 +16,8 @@ func _physics_process(delta):
 	if collision:
 		velocity = velocity.bounce(collision.normal)
 		velocity = move_and_slide(velocity)
+
+	if velocity.x == 0:
+		velocity.x = 0.1 if randi() % 2 else -0.1
+	if velocity.length() < min_speed:
+		velocity = velocity.normalized() * min_speed
