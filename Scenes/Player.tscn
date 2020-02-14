@@ -11,8 +11,10 @@ vspeed = 250.0
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, -16 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -32 )
 polygon = PoolVector2Array( 64, 32, 64, 20, 56, 0, 48, -12, 40, -20, 24, -28, 12, -32, -12, -32, -24, -28, -40, -20, -48, -12, -56, 0, -64, 20, -64, 32 )
 
 [node name="JumpTimer" type="Timer" parent="."]
@@ -24,8 +26,6 @@ process_mode = 0
 one_shot = true
 
 [node name="FallTimer" type="Timer" parent="."]
-process_mode = 0
-one_shot = true
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="HoverTimer" to="." method="_on_HoverTimer_timeout"]
 [connection signal="timeout" from="FallTimer" to="." method="_on_FallTimer_timeout"]
