@@ -31,6 +31,8 @@ Game="*res://Scenes/Game.gd"
 
 window/size/width=1366
 window/size/height=768
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [gdnative]
 
