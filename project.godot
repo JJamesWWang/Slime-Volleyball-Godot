@@ -23,6 +23,10 @@ _global_script_class_icons={
 config/name="Slime Volleyball"
 run/main_scene="res://Scenes/Main.tscn"
 
+[autoload]
+
+Game="*res://Scenes/Game.gd"
+
 [display]
 
 window/size/width=1366

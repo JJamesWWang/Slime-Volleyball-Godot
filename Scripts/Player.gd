@@ -69,12 +69,10 @@ func _physics_process(delta):
     var velocity = Vector2()
     velocity.x = movement_horizontal()
     velocity.y = movement_vertical()
+
     velocity = move_and_slide(velocity)
-
-    var GROUND = 0
-    if transform.y > GROUND:
+    if velocity.y == 0 and not hovering:
         land()
-
 
 
 func _on_JumpTimer_timeout():
