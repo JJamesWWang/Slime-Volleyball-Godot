@@ -35,3 +35,7 @@ func _on_Volleyball_collision(_volleyball, _collider):
 
 func _on_Volleyball_score_area_contact(_volleyball, _side):
 	print_debug("Signal emitted: Score Area Contact")
+
+
+func _on_Volleyball_spike_hit(_volleyball, _player):
+	print_debug("Signal emitted: Spike hit");

@@ -51,29 +51,32 @@ side = 1
 position = Vector2( 183, 184 )
 collision_layer = 4
 collision_mask = 3
-min_speed = 300.0
 
 [node name="Player 1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 183, 735 )
 collision_layer = 2
 collision_mask = 5
-default_x = 183.0
-default_y = 736.0
 
 [node name="Player 2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1183, 735 )
 collision_layer = 2
 collision_mask = 5
+default_x = 683
+default_y = 640
 
 [node name="Player 3" parent="." instance=ExtResource( 9 )]
 position = Vector2( 483, 736 )
 collision_layer = 2
 collision_mask = 5
+default_x = 683
+default_y = 640
 
 [node name="Player 4" parent="." instance=ExtResource( 10 )]
 position = Vector2( 883, 736 )
 collision_layer = 2
 collision_mask = 5
+default_x = 683
+default_y = 640
 [connection signal="end" from="Game" to="Debug" method="_on_Game_end"]
 [connection signal="pause" from="Game" to="Debug" method="_on_Game_pause"]
 [connection signal="point_end" from="Game" to="Debug" method="_on_Game_point_end"]
@@ -83,3 +86,8 @@ collision_mask = 5
 [connection signal="start" from="Game" to="Debug" method="_on_Game_start"]
 [connection signal="collision" from="Volleyball" to="Debug" method="_on_Volleyball_collision"]
 [connection signal="score_area_contact" from="Volleyball" to="Debug" method="_on_Volleyball_score_area_contact"]
+[connection signal="spike_hit" from="Volleyball" to="Player 3" method="_on_Volleyball_spike_hit"]
+[connection signal="spike_hit" from="Volleyball" to="Player 4" method="_on_Volleyball_spike_hit"]
+[connection signal="spike_hit" from="Volleyball" to="Player 2" method="_on_Volleyball_spike_hit"]
+[connection signal="spike_hit" from="Volleyball" to="Player 1" method="_on_Volleyball_spike_hit"]
+[connection signal="spike_hit" from="Volleyball" to="Debug" method="_on_Volleyball_spike_hit"]
