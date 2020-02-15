@@ -38,7 +38,7 @@ func _emit_signals(collision):
 		emit_signal("score_area_contact", self, collider.side)
 	if collider is Player:
 		_detect_spike_hit(collider)
-d
+
 
 
 func _detect_spike_hit(player):
