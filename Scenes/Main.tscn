@@ -14,7 +14,7 @@
 position = Vector2( 0, 1 )
 
 [node name="Game" type="Node2D" parent="."]
-position = Vector2( 0, 1 )
+position = Vector2( 0, 2 )
 script = ExtResource( 7 )
 
 [node name="Debug" type="Node2D" parent="."]
@@ -81,9 +81,10 @@ default_y = 640
 [connection signal="end" from="Game" to="Debug" method="_on_Game_end"]
 [connection signal="pause" from="Game" to="Debug" method="_on_Game_pause"]
 [connection signal="point_end" from="Game" to="Debug" method="_on_Game_point_end"]
+[connection signal="point_reset" from="Game" to="Debug" method="_on_Game_point_reset"]
 [connection signal="point_start" from="Game" to="Debug" method="_on_Game_point_start"]
+[connection signal="restart" from="Game" to="Debug" method="_on_Game_restart"]
 [connection signal="resume" from="Game" to="Debug" method="_on_Game_resume"]
-[connection signal="score_update" from="Game" to="Debug" method="_on_Game_score_update"]
 [connection signal="start" from="Game" to="Debug" method="_on_Game_start"]
 [connection signal="collision" from="Volleyball" to="Debug" method="_on_Volleyball_collision"]
 [connection signal="score_area_contact" from="Volleyball" to="Debug" method="_on_Volleyball_score_area_contact"]
