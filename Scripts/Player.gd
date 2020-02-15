@@ -7,9 +7,14 @@ export(float) var hspeed = 300
 export(float) var vspeed = 250
 export(float) var jump_time = 1
 export(float) var hover_time = 0.15
+export(float) var spike_speed_increase = 150
 
-export(float) var default_x = 1366 / 2
-export(float) var default_y = 768 - 32 * 4
+export(int) var default_x = 1366 / 2
+export(int) var default_y = 768 - 32 * 4
+
+export(int) var xradius = 64
+export(int) var yradius = 32
+export(int) var horizontal_pixel_height = 12
 var player_name = "Debug"
 
 # only one of the following three can be true at once
@@ -93,7 +98,6 @@ func _on_Collision(collision):
 		land()
 
 
-
 func _on_JumpTimer_timeout():
 	hover_start()
 
@@ -104,3 +108,7 @@ func _on_HoverTimer_timeout():
 
 func _on_FallTimer_timeout():
 	land()
+
+
+func _on_Volleyball_spike_hit(ball, player):
+	ball.min_speed += spike_speed_increase
