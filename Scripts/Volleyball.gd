@@ -20,7 +20,11 @@ func _physics_process(delta):
 
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		velocity = velocity.bounce(collision.normal)
+		var collider = collision.collider
+		if collider is Player:
+			velocity = collider.player_bounce(self, velocity)
+		else:
+			velocity = velocity.bounce(collision.normal)
 		velocity = move_and_slide(velocity)
 		_emit_signals(collision)
 	
@@ -38,7 +42,6 @@ func _emit_signals(collision):
 		emit_signal("score_area_contact", self, collider.side)
 	if collider is Player:
 		_detect_spike_hit(collider)
-
 
 
 func _detect_spike_hit(player):

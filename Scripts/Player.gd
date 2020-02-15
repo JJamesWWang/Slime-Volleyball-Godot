@@ -82,6 +82,19 @@ func land():
 	falling = false
 
 
+# return new velocity
+func player_bounce(ball, velocity):
+	var center_x = position.x
+	var center_y = position.y - yradius
+	var ball_x = ball.position.x
+	var ball_y = ball.position.y
+
+	var direction = Vector2(ball_x - center_x, ball_y - center_y).normalized()
+	return direction * velocity.length()
+
+
+
+
 func _physics_process(delta):
 	var velocity = Vector2()
 	velocity.x = movement_horizontal()
@@ -111,4 +124,4 @@ func _on_FallTimer_timeout():
 
 
 func _on_Volleyball_spike_hit(ball, player):
-	ball.min_speed += spike_speed_increase
+	ball.min_speed += player.spike_speed_increase
