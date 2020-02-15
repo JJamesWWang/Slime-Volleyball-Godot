@@ -34,7 +34,7 @@ _global_script_class_icons={
 
 config/name="Slime Volleyball"
 run/main_scene="res://Scenes/Main.tscn"
-boot_splash/image="res://Sprites/Environment/Volleyball.png"
+config/icon="res://Sprites/Environment/Volleyball.png"
 
 [autoload]
 
