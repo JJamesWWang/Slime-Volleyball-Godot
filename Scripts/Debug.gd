@@ -2,40 +2,44 @@ extends Node2D
 
 
 func _on_Game_start():
-	print_debug("Signal emitted: Game Start")
+	print("Signal emitted: Game Start")
 
 
 func _on_Game_point_start():
-	print_debug("Signal emitted: Point Start")
+	print("Signal emitted: Point Start")
 
 
 func _on_Game_point_end():
-	print_debug("Signal emitted: Point End")
+	print("Signal emitted: Point End")
 
 
-func _on_Game_score_update():
-	print_debug("Signal emitted: Score Update")
+func _on_Game_point_reset():
+	print("Signal emitted: Point Reset")
 
 
 func _on_Game_pause():
-	print_debug("Signal emitted: Pause")
+	print("Signal emitted: Pause")
 
 
 func _on_Game_resume():
-	print_debug("Signal emitted: Resume")
+	print("Signal emitted: Resume")
 
 
 func _on_Game_end():
-	print_debug("Signal emitted: Game End")
+	print("Signal emitted: Game End")
 
+
+func _on_Game_restart():
+	print("Signal emitted: Game Restart")
+	
 
 func _on_Volleyball_collision(_volleyball, _collider):
-	print_debug("Signal emitted: Volleyball Collision")
+	print("Signal emitted: Volleyball Collision")
 
 
 func _on_Volleyball_score_area_contact(_volleyball, _side):
-	print_debug("Signal emitted: Score Area Contact")
+	print("Signal emitted: Score Area Contact")
 
 
 func _on_Volleyball_spike_hit(_volleyball, _player):
-	print_debug("Signal emitted: Spike hit");
+	print("Signal emitted: Spike hit");
