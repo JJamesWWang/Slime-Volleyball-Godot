@@ -18,16 +18,23 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Volleyball",
+"language": "GDScript",
+"path": "res://Scripts/Volleyball.gd"
 } ]
 _global_script_class_icons={
 "GitAPI": "",
-"Player": ""
+"Player": "",
+"Volleyball": ""
 }
 
 [application]
 
 config/name="Slime Volleyball"
 run/main_scene="res://Scenes/Main.tscn"
+boot_splash/image="res://Sprites/Environment/Volleyball.png"
 
 [autoload]
 
