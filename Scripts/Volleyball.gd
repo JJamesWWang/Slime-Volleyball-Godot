@@ -20,9 +20,13 @@ func _physics_process(delta):
 	if collision:
 		velocity = velocity.bounce(collision.normal)
 		velocity = move_and_slide(velocity)
-		emit_signal("collision", self, collision.collider)
-		if collision.collider.is_class("ScoreArea"):
-			emit_signal("score_area_contact", self, collision.collider.side)
+
+		var collider = collision.collider
+		emit_signal("collision", self, collider)
+
+		# works!
+		if collider.is_class("TileMap") and "side" in collider:
+			print(collider.side)
 
 	if velocity.x == 0:
 		velocity.x = 0.1 if randi() % 2 else -0.1
