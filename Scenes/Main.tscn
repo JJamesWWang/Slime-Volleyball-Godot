@@ -51,6 +51,7 @@ side = 1
 position = Vector2( 183, 184 )
 collision_layer = 4
 collision_mask = 3
+min_speed = 150.0
 
 [node name="Player 1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 183, 735 )

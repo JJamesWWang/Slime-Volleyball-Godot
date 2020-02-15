@@ -82,7 +82,7 @@ func land():
 	falling = false
 
 
-# return new velocity
+# bounce ball from player's center
 func player_bounce(ball, velocity):
 	var center_x = position.x
 	var center_y = position.y - yradius
