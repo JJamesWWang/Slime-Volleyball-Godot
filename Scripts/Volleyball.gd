@@ -27,7 +27,7 @@ func _physics_process(delta):
 	if velocity.x == 0:
 		velocity.x = 0.1 if randi() % 2 else -0.1
 	if velocity.length() < min_speed:
-		velocity = velocity.normalized() * min_spee
+		velocity = velocity.normalized() * min_speed
 
 
 func _emit_signals(collision):
