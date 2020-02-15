@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Sprites/Environment/Green Tile.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Environment/Red Tile.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/Player 2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Player 3.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Player 4.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/Debug.gd" type="Script" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -81,12 +82,16 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 4/z_index = 0
 
 [node name="Main" type="Node2D"]
+position = Vector2( 0, 1 )
 
 [node name="Game" type="Node2D" parent="."]
 position = Vector2( 0, 1 )
 script = ExtResource( 7 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Debug" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="Background" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
 cell_size = Vector2( 32, 32 )
 collision_friction = 0.0
@@ -124,3 +129,12 @@ collision_mask = 5
 position = Vector2( 883, 736 )
 collision_layer = 2
 collision_mask = 5
+[connection signal="end" from="Game" to="Debug" method="_on_Game_end"]
+[connection signal="pause" from="Game" to="Debug" method="_on_Game_pause"]
+[connection signal="point_end" from="Game" to="Debug" method="_on_Game_point_end"]
+[connection signal="point_start" from="Game" to="Debug" method="_on_Game_point_start"]
+[connection signal="resume" from="Game" to="Debug" method="_on_Game_resume"]
+[connection signal="score_update" from="Game" to="Debug" method="_on_Game_score_update"]
+[connection signal="start" from="Game" to="Debug" method="_on_Game_start"]
+[connection signal="collision" from="Volleyball" to="Debug" method="_on_Volleyball_collision"]
+[connection signal="score_area_contact" from="Volleyball" to="Debug" method="_on_Volleyball_score_area_contact"]
