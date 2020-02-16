@@ -21,15 +21,22 @@ func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		var collider = collision.collider
+
+		# bounce differently depending on whether it's a Player or TileMap
 		if collider is Player:
 			velocity = collider.player_bounce(self, velocity)
 		else:
 			velocity = velocity.bounce(collision.normal)
+
+		# slide so collisions don't freeze ball (working solution)
 		velocity = move_and_slide(velocity)
 		_emit_signals(collision)
 	
+	# prevent ball from getting stuck on one side
 	if velocity.x == 0:
 		velocity.x = 0.1 if randi() % 2 else -0.1
+	
+	# ensure ball always has certain speed (slow down would be boring)
 	if velocity.length() < min_speed:
 		velocity = velocity.normalized() * min_speed
 
