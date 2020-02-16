@@ -2,13 +2,18 @@ extends KinematicBody2D
 
 class_name Volleyball
 
-signal collision
-signal score_area_contact
-signal spike_hit
-var gravity = 100
+# signals
+signal collision				# ball, collision
+signal score_area_contact		# ball, side
+signal spike_hit				# ball, player
+
+# constants
+export(int) var RADIUS = 16
+var GRAVITY = 100
+
+# vars
 var velocity = Vector2()
 export var min_speed = 300.0;
-export(int) var radius = 16
 
 
 func _ready():
@@ -16,7 +21,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	velocity.y += gravity * delta
+	velocity.y += GRAVITY * delta
 
 	var collision = move_and_collide(velocity * delta)
 	if collision:
@@ -57,7 +62,7 @@ func _detect_spike_hit(player):
 
 	# if (the middle of the ball) (is =below) (top of vertical part of slime)
 	#   and (the top of the ball) (is above) (bottom of the slime) 
-	if ball_y >= player_y - player.horizontal_pixel_height and \
-			ball_y - radius < player_y:
+	if ball_y >= player_y - player.HORIZONTAL_PIXEL_HEIGHT and \
+			ball_y - RADIUS < player_y:
 		emit_signal("spike_hit", self, player)
 
