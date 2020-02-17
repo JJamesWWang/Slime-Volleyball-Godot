@@ -9,6 +9,8 @@ load_path = "res://.import/Red Slime.png-7dd98d7e9a26ea4c4ef32f65d02e932d.stex"
 
 [node name="Player 1" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+DEFAULT_X = 183
+DEFAULT_Y = 732
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource( 1 )

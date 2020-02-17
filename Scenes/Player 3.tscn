@@ -12,8 +12,8 @@ func _init().(\"Player 3\"):
 
 [node name="Player 3" instance=ExtResource( 1 )]
 script = SubResource( 1 )
-default_x = 483.0
-default_y = 736.0
+DEFAULT_X = 483
+DEFAULT_Y = 732
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )

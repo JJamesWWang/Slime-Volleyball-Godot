@@ -11,7 +11,7 @@ export(float) var HOVER_TIME = 0.15
 export(float) var SPIKE_SPEED_INCREASE = 150
 
 # position related
-export(int) var DEFAULT_X = 1366 / 2
+export(int) var DEFAULT_X = 1366 / 2 - 4 	# account for imprecision
 export(int) var DEFAULT_Y = 768 - 32 * 4
 export(int) var XRADIUS = 64
 export(int) var YRADIUS = 32
@@ -88,6 +88,10 @@ func land():
 	jumping = false
 	hovering = false
 	falling = false
+
+
+func reset():
+	land()
 
 
 # bounce ball from player's center

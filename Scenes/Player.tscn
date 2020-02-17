@@ -4,9 +4,9 @@
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 2 )
-default_x = 683.0
-default_y = 640.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
