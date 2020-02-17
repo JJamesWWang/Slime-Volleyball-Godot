@@ -5,15 +5,15 @@ func _on_Game_start():
 	print("Signal emitted: Game Start")
 
 
-func _on_Game_point_start():
+func _on_Game_point_start(_side):
 	print("Signal emitted: Point Start")
 
 
-func _on_Game_point_end():
+func _on_Game_point_end(_side):
 	print("Signal emitted: Point End")
 
 
-func _on_Game_point_reset():
+func _on_Game_point_reset(_side):
 	print("Signal emitted: Point Reset")
 
 
@@ -25,7 +25,7 @@ func _on_Game_resume():
 	print("Signal emitted: Resume")
 
 
-func _on_Game_end():
+func _on_Game_end(_side):
 	print("Signal emitted: Game End")
 
 
