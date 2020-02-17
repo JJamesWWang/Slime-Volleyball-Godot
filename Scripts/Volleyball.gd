@@ -10,6 +10,7 @@ signal spike_hit				# ball, player
 # constants
 export(int) var RADIUS = 16
 var GRAVITY = 100
+var DROP_HEIGHT = 128
 
 # vars
 var velocity = Vector2()
@@ -17,8 +18,25 @@ export var min_speed = 300.0;
 
 
 func _ready():
-	velocity.y = min_speed
+	connect_signals()
+	velocity = Vector2(0, min_speed)
 
+
+func connect_signals():
+	var game = get_node("/root/Main/Game")
+	var debug = get_node("/root/Main/Debug")
+
+	if debug:
+		connect("collision", debug, "_on_Volleyball_collision")
+		connect("score_area_contact", debug, 
+			"_on_Volleyball_score_area_contact")
+		connect("spike_hit", debug,  "_on_Volleyball_spike_hit")
+
+	if game:
+		connect("score_area_contact", game, 
+			"_on_Volleyball_score_area_contact")
+		for player in game.players:
+			connect("spike_hit", player, "_on_Volleyball_spike_hit")
 
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta
@@ -35,15 +53,17 @@ func _physics_process(delta):
 
 		# slide so collisions don't freeze ball (working solution)
 		velocity = move_and_slide(velocity)
-		_emit_signals(collision)
 	
 	# prevent ball from getting stuck on one side
-	if velocity.x == 0:
-		velocity.x = 0.1 if randi() % 2 else -0.1
+	if velocity.length() == 0:
+		velocity.x = 1 if bool(randi() % 2) else -1
 	
 	# ensure ball always has certain speed (slow down would be boring)
 	if velocity.length() < min_speed:
 		velocity = velocity.normalized() * min_speed
+
+	if collision:	# emit signals after velocity has been modified
+		_emit_signals(collision)
 
 
 func _emit_signals(collision):
