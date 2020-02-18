@@ -33,6 +33,10 @@ func _on_Game_restart():
 	print("Signal emitted: Game Restart")
 	
 
+func _on_Player_hit(player, _volleyball):
+	print(player.name," hit")
+
+
 func _on_Volleyball_collision(_volleyball, _collider):
 	print("Signal emitted: Volleyball Collision")
 
