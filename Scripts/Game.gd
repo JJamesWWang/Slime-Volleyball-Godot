@@ -53,7 +53,6 @@ func _reset():
 	is_paused = false
 	is_over = false
 	reset_players()
-		print("Ball velocity: ", velocity)
 
 
 func clear_volleyballs():
@@ -77,7 +76,7 @@ func _input(event):
 				emit_signal("pause")
 
 func _on_Game_start():
-	emit_signal("point_start", Side.RIGHT)
+	emit_signal("point_start", Side.LEFT)
 
 
 func _on_Game_point_start(spawn_side):
