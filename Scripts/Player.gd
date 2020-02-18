@@ -3,6 +3,9 @@ extends KinematicBody2D
 class_name Player
 
 
+# signals
+signal hit		# player, collision
+
 # player mechanics constants
 export(float) var HSPEED = 300
 export(float) var VSPEED = 250
@@ -11,8 +14,8 @@ export(float) var HOVER_TIME = 0.15
 export(float) var SPIKE_SPEED_INCREASE = 150
 
 # position related
-export(int) var DEFAULT_X = 1366 / 2 - 4 	# account for imprecision
-export(int) var DEFAULT_Y = 768 - 32 * 4
+export(int) var DEFAULT_X = 1366 / 2
+export(int) var DEFAULT_Y = 768 - 33 * 4	# account for imprecision (33)
 export(int) var XRADIUS = 64
 export(int) var YRADIUS = 32
 export(int) var HORIZONTAL_PIXEL_HEIGHT = 12
@@ -26,6 +29,12 @@ var hovering = false	# when player hits down (cancel) or jump timer runs out
 var falling = false		# when hovering finishes or player hits TileMap
 onready var jump_timer = $JumpTimer
 onready var hover_timer = $HoverTimer
+
+
+func _ready():
+	var debug = get_node("/root/Main/Debug")
+	if debug:
+		connect("hit", debug, "_on_Player_hit")
 
 
 func _init(_player_name="Debug").():
@@ -111,13 +120,16 @@ func _physics_process(delta):
 
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		_on_Collision(collision)
+		_on_collision(collision)
 
 		# working solution so player doesn't freeze on collision
 		velocity = move_and_slide(velocity)
 
+		if collision.collider.get_class() != "TileMap": 
+			emit_signal("hit", self, collision)
 
-func _on_Collision(collision):
+
+func _on_collision(collision):
 	if collision.collider.get_class() == "TileMap":
 		land()
 
