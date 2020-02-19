@@ -60,8 +60,9 @@ func movement_vertical(delta):
 			not (jumping or hovering or falling):
 		jump_start()
 
-	# cancel jump on pressing down if jumping
-	if Input.is_action_pressed("%s Down" % player_name) and jumping:
+	# cancel jump on pressing down or start hover while falling due to gravity
+	if Input.is_action_pressed("%s Down" % player_name) and \
+			not hovering and not falling:
 		hover_start()
 	
 	if jumping:
