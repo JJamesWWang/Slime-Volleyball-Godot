@@ -12,6 +12,7 @@ export(float) var VSPEED = 250
 export(float) var JUMP_TIME = 1
 export(float) var HOVER_TIME = 0.15
 export(float) var SPIKE_SPEED_INCREASE = 150
+export(float) var GRAVITY = 100
 
 # position related
 export(int) var DEFAULT_X = 1366 / 2
@@ -50,7 +51,7 @@ func movement_horizontal():
 	return 0
 
 
-func movement_vertical():
+func movement_vertical(delta):
 	# only allow jumps if player has "landed"
 	if Input.is_action_pressed("%s Up" % player_name) and \
 			not (jumping or hovering or falling):
@@ -65,7 +66,7 @@ func movement_vertical():
 	if hovering:
 		return 0
 	# default to falling in case of weird behavior
-	return 1 * VSPEED
+	return max(1 * VSPEED, velocity.y + (GRAVITY * delta))
 
 
 func jump_start():
@@ -116,7 +117,7 @@ func player_bounce(ball, vel):
 
 func _physics_process(delta):
 	velocity.x = movement_horizontal()
-	velocity.y = movement_vertical()
+	velocity.y = movement_vertical(delta)
 
 	var collision = move_and_collide(velocity * delta)
 	if collision:
@@ -140,10 +141,6 @@ func _on_JumpTimer_timeout():
 
 func _on_HoverTimer_timeout():
 	fall_start()
-
-
-func _on_FallTimer_timeout():
-	land()
 
 
 func _on_Volleyball_spike_hit(ball, player):

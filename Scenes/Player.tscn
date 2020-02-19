@@ -24,8 +24,5 @@ one_shot = true
 [node name="HoverTimer" type="Timer" parent="."]
 process_mode = 0
 one_shot = true
-
-[node name="FallTimer" type="Timer" parent="."]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="HoverTimer" to="." method="_on_HoverTimer_timeout"]
-[connection signal="timeout" from="FallTimer" to="." method="_on_FallTimer_timeout"]
