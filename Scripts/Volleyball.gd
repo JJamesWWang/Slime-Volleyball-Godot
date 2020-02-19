@@ -9,8 +9,8 @@ signal spike_hit				# ball, player
 
 # constants
 export(int) var RADIUS = 16
-var GRAVITY = 100
-var DROP_HEIGHT = 128
+export(float) var GRAVITY = 200
+export(int) var DROP_HEIGHT = 128
 
 # vars
 var velocity = Vector2()
@@ -96,3 +96,4 @@ func _detect_spike_hit(player):
 func _on_Player_hit(player, collision):
 	var ball = collision.collider
 	ball.velocity = player.player_bounce(ball, ball.velocity)
+	_detect_spike_hit(player)
