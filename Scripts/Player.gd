@@ -11,6 +11,7 @@ export(float) var HSPEED = 300
 export(float) var VSPEED = 250
 export(float) var JUMP_TIME = 1
 export(float) var HOVER_TIME = 0.15
+export(float) var SPIKE_TIME_COOLDOWN = 0.25
 export(float) var SPIKE_SPEED_INCREASE = 150
 export(float) var GRAVITY = 100
 
@@ -28,8 +29,10 @@ var velocity = Vector2()
 var jumping = false		# when player hits up
 var hovering = false	# when player hits down (cancel) or jump timer runs out
 var falling = false		# when hovering finishes or player hits TileMap
+var spiked = false
 onready var jump_timer = $JumpTimer
 onready var hover_timer = $HoverTimer
+onready var spike_timer = $SpikeTimer
 
 
 func _ready():
@@ -143,6 +146,13 @@ func _on_HoverTimer_timeout():
 	fall_start()
 
 
+func _on_SpikeTimer_timeout():
+	spiked = false
+
+
 func _on_Volleyball_spike_hit(ball, player):
 	# spikes permanently increase speed of ball
-	ball.min_speed += player.SPIKE_SPEED_INCREASE
+	if not spiked:
+		ball.min_speed += player.SPIKE_SPEED_INCREASE
+		spike_timer.start(SPIKE_TIME_COOLDOWN)
+		spiked = true

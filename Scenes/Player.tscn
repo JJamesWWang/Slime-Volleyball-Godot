@@ -24,5 +24,9 @@ one_shot = true
 [node name="HoverTimer" type="Timer" parent="."]
 process_mode = 0
 one_shot = true
+
+[node name="SpikeTimer" type="Timer" parent="."]
+wait_time = 0.25
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="HoverTimer" to="." method="_on_HoverTimer_timeout"]
+[connection signal="timeout" from="SpikeTimer" to="." method="_on_SpikeTimer_timeout"]
