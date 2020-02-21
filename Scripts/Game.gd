@@ -64,7 +64,7 @@ func clear_volleyballs():
 func reset_players():
 	for player in players:
 		player.position = Vector2(player.DEFAULT_X, player.DEFAULT_Y)
-		
+		player.reset()
 
 
 func _input(event):
@@ -117,6 +117,8 @@ func _on_Game_point_end(collide_side):
 func _on_Game_point_reset(winning_side):
 	reset_players()
 	clear_volleyballs()
+	emit_signal("pause")
+	yield(get_tree().create_timer(1), "timeout")
 	emit_signal("resume")
 	emit_signal("point_start", winning_side)
 
