@@ -136,7 +136,9 @@ func _on_Game_restart():
 
 func _on_Game_pause():
 	is_paused = true
+	get_tree().paused = true
 	
 
 func _on_Game_resume():
 	is_paused = false
+	get_tree().paused = false

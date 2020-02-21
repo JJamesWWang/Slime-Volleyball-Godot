@@ -12,6 +12,7 @@ position = Vector2( 0, 1 )
 script = ExtResource( 11 )
 
 [node name="Game" type="Node2D" parent="."]
+pause_mode = 2
 position = Vector2( 0, 2 )
 script = ExtResource( 7 )
 
