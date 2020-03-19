@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Green Slime.png-bc56307a873f3ff13b35b3fdbbcb8eeb.stex"
+path="res://.import/Arrow Right.png-c1131b3f00ecfc10921cb39c353559db.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters/Green Slime.png"
-dest_files=[ "res://.import/Green Slime.png-bc56307a873f3ff13b35b3fdbbcb8eeb.stex" ]
+source_file="res://Sprites/Environment/Arrow Right.png"
+dest_files=[ "res://.import/Arrow Right.png-c1131b3f00ecfc10921cb39c353559db.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
