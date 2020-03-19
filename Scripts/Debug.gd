@@ -13,6 +13,10 @@ func _on_Game_point_end(_side):
 	print("Signal emitted: Point End")
 
 
+func _on_Game_score_updated(_left_score, _right_score) -> void:
+	print("Signal emitted: Score Updated")
+	
+
 func _on_Game_point_reset(_side):
 	print("Signal emitted: Point Reset")
 
@@ -47,3 +51,4 @@ func _on_Volleyball_score_area_contact(_volleyball, _side):
 
 func _on_Volleyball_spike_hit(_volleyball, _player):
 	print("Signal emitted: Spike hit");
+
