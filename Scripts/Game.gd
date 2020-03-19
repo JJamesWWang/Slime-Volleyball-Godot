@@ -1,8 +1,8 @@
 extends Node2D
 
 enum Side {
-	LEFT,
-	RIGHT
+	LEFT = 0,
+	RIGHT = 1,
 }
 
 # signals
@@ -10,6 +10,7 @@ signal start			#
 signal point_start		# spawn_side
 signal point_end		# collide_side
 signal point_reset		# winning_side
+signal score_updated 	# left_score, right_score
 signal end				# winning_side
 signal restart			# 
 signal pause			# 
@@ -37,7 +38,9 @@ var volleyballs = []
 func _ready():
 	player1.position = Vector2(player1.DEFAULT_X, player1.DEFAULT_Y)
 	player2.position = Vector2(player2.DEFAULT_X, player2.DEFAULT_Y)
-	players = [player1, player2]
+	player3.position = Vector2(player3.DEFAULT_X, player3.DEFAULT_Y)
+	player4.position = Vector2(player4.DEFAULT_X, player4.DEFAULT_Y)
+	players = [player1, player2, player3, player4]
 
 	for player in players:
 		get_parent().call_deferred("add_child", player)
@@ -102,6 +105,7 @@ func _on_Game_point_end(collide_side):
 		right_score += 1
 	else:
 		left_score += 1
+	emit_signal("score_updated", left_score, right_score)
 
 	if left_score >= POINTS_TO_WIN:
 		emit_signal("end", Side.LEFT)
@@ -117,20 +121,16 @@ func _on_Game_point_end(collide_side):
 func _on_Game_point_reset(winning_side):
 	reset_players()
 	clear_volleyballs()
-	emit_signal("pause")
+	_on_Game_pause()
 	yield(get_tree().create_timer(1), "timeout")
-	emit_signal("resume")
+	_on_Game_resume()
 	emit_signal("point_start", winning_side)
 
 
 func _on_Game_end(winning_side):
 	assert(winning_side == Side.LEFT or winning_side == Side.RIGHT)
 	clear_volleyballs()
-	if winning_side == Side.LEFT:
-		print("Left wins")
-	else:
-		print("Right wins")
-	emit_signal("restart")
+	emit_signal("pause")
 	
 	
 func _on_Game_restart():
@@ -146,3 +146,8 @@ func _on_Game_pause():
 func _on_Game_resume():
 	is_paused = false
 	get_tree().paused = false
+
+
+func _on_PauseMenu_restart_clicked() -> void:
+	emit_signal("resume")
+	get_tree().reload_current_scene()
